@@ -44,7 +44,7 @@ then
 	cd ../../
 	echo -e "\t\tOK"
 
-	echo -e "Downloading SpaceCP now...\c"
+	echo -e "Downloading SpaceCP...\c"
 	i=0
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -58,9 +58,9 @@ then
 	done
 	if [ $success -eq 1 ]
 	then
-	    echo -e "\tOK"
+	    echo -e "\t\tOK"
 	else
-	    echo -e "\tERROR"
+	    echo -e "\t\tERROR"
 	    echo -e "Could not download the panel! Maybe try again or ask us for support!\n"
 	    exit 1
 	fi
