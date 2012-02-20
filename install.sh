@@ -49,7 +49,7 @@ then
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
 	do
-	    if wget "$URL$FILENAME" &> /dev/null
+	    if wget -q "$URL$FILENAME" > /dev/null
 	    then
 	        success=1
 	    else
@@ -66,7 +66,7 @@ then
 	fi
 
 	echo -e "Unzipping...\c"
-	if unzip -nqq $FILENAME &> /dev/null
+	if unzip -nqq $FILENAME > /dev/null
 	then
 	    chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
 	    chmod -R 664 app/webroot/3d_skin
@@ -77,7 +77,8 @@ then
 	        chown -R www-data:www-data *
 	    fi
 	    rm $FILENAME
-	    wget -oqq $INSTURL
+	    rm app/tmp/inst.txt
+	    wget -q $INSTURL > /dev/null
 	    echo -e "\t\t\tOK"
 	    echo -e "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
 	    exit 0
@@ -161,7 +162,7 @@ else
 fi
 
 echo -e "php-curl...\c"
-if ls /usr/lib*/*curl* &> /dev/null
+if ls /usr/lib*/*curl* > /dev/null
 then
 	echo -e "\t\t\tOK"
     dep3=1
@@ -181,7 +182,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing MySQL...\c"
-            if apt-get install -y mysql &> /dev/null
+            if apt-get install -y mysql > /dev/null
             then
                 echo -e "\t\tOK"
                 slqd=1
@@ -200,7 +201,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing MySQL...\c"
-            if yum install -y mysql-server &> /dev/null
+            if yum install -y mysql-server > /dev/null
             then
                 echo -e "\t\tOK"
                 sqld=1
@@ -227,7 +228,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing Apache2..."
-            if apt-get install -y apache2 &> /dev/null
+            if apt-get install -y apache2 > /dev/null
             then
                 echo -e "\t\tOK"
                 dep1=1
@@ -246,7 +247,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing httpd...\c"
-            if yum install -y httpd &> /dev/null
+            if yum install -y httpd > /dev/null
             then
                 echo -e "\t\tOK"
                 dep1=1
@@ -292,7 +293,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo "Installing PHP and Curl...\c"
-            if yum install -y php libcurl &> /dev/null
+            if yum install -y php libcurl > /dev/null
             then
                 echo -e "\tOK"
                 dep3=1
@@ -319,7 +320,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing Curl...\c"
-            if apt-get install -y php5-curl &> /dev/null
+            if apt-get install -y php5-curl > /dev/null
             then
                 echo -e "\t\tOK"
                 dep3=1
@@ -337,7 +338,7 @@ then
         if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
         then
             echo -e "Installing Curl...\c"
-            if yum install -y libcurl &> /dev/null
+            if yum install -y libcurl > /dev/null
             then
                 echo -e "\t\tOK"
                 dep3=1
@@ -359,7 +360,7 @@ i=0
 success=0
 while [ $i -lt 5 ] && [ $success -eq 0 ]
 do
-    if wget "$URL$FILENAME" &> /dev/null
+    if wget -q "$URL$FILENAME" > /dev/null
     then
         success=1
     else
@@ -376,7 +377,7 @@ else
 fi
 
 echo -e "Unzipping...\c"
-if unzip -oqq $FILENAME &> /dev/null
+if unzip -oqq $FILENAME > /dev/null
 then
     chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
     chmod -R 664 app/webroot/3d_skin
@@ -390,12 +391,12 @@ then
 #    rm unzip
     if [ -f /etc/debian_verion ]
     then
-        [ $resw -eq 1 ] && /etc/init.d/apache2 restart &> /dev/null
-        [ $resw -eq 2 ] && /etc/init.d/nginx restart &> /dev/null
+        [ $resw -eq 1 ] && /etc/init.d/apache2 restart > /dev/null
+        [ $resw -eq 2 ] && /etc/init.d/nginx restart > /dev/null
     elif [ -f /etc/centos-release ]
     then
-        [ $resw -eq 1 ] && /etc/init.d/httpd restart &> /dev/null
-        [ $resw -eq 2 ] && /etc/init.d/nginx restart &> /dev/null
+        [ $resw -eq 1 ] && /etc/init.d/httpd restart > /dev/null
+        [ $resw -eq 2 ] && /etc/init.d/nginx restart > /dev/null
     fi
     echo -e "\t\t\tOK"
     echo -e "\nEverything has been unzipped, modded and owned correctly! You now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
