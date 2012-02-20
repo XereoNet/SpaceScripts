@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # URL to the Download Directory, NOT the file
-URL="http://dl.xereo.net/rec/"
+URL="http://dl.xereo.net/open/"
 # Filename derp
-FILENAME="web.zip"
+FILENAME="1.1.00-full.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/install.sh"
 # URL to the unzip binaries
