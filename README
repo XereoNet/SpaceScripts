@@ -1,6 +1,6 @@
-                    ====================
-                    ==== install.sh ====
-                    ====================
+ ====================
+ ==== install.sh ====
+ ====================
 
  This script file is intended for all linux systems.
  It has the possibility to check for dependencies (to a certain point),
@@ -18,9 +18,9 @@
    the current directory and preserves configuration of SpaceCP.
 
 
-                    ====================
-                    == mac_install.sh ==
-                    ====================
+ ====================
+ == mac_install.sh ==
+ ====================
 
  This script file is intended for all linux systems.
  It has the possibility to fully install a SpaceCP copy in the current
