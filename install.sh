@@ -69,7 +69,6 @@ then
 	if unzip -nqq $FILENAME > /dev/null
 	then
 	    chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
-	    chmod -R 664 app/webroot/3d_skin
 	    if [ -f /etc/centos-release ]
 	    then
 	        chown -R apache:apache *
@@ -380,7 +379,6 @@ echo -e "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
     chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
-    chmod -R 664 app/webroot/3d_skin
     if [ -f /etc/centos-release ]
     then
         chown -R apache:apache *
