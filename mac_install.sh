@@ -11,17 +11,17 @@ URLUZ="http://dl.xereo.net/zip/bin/unzip"
 
 if [ "$(id -u)" != "0" ]
 then
-    echo "This script must be run as root!" 1>&2
-    exit 1
+	echo "This script must be run as root!" 1>&2
+	exit 1
 elif [ -z $BASH ]
 then
-    echo "You need to execute this script in bash!" 1>&2
-    exit 1
+	echo "You need to execute this script in bash!" 1>&2
+	exit 1
 fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
 then
-	echo -e "Deleting old files...\c"
+	echo "Deleting old files...\c"
 	for i in $(ls -A ./ | grep -v "app")
 	do
 		rm -r $i
@@ -42,79 +42,103 @@ then
 		rm -r $i
 	done
 	cd ../../
-	echo -e "\t\tOK"
+	echo "\t\tOK"
 
-	echo -e "Downloading SpaceCP...\c"
+	echo "Downloading SpaceCP...\c"
 	i=0
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
 	do
-	    if curl --silent "$URL$FILENAME" -o $FILENAME > /dev/null
-	    then
-	        success=1
-	    else
-	        (( i += 1 ))
-	    fi
+		if curl --silent "$URL$FILENAME" -o $FILENAME > /dev/null
+		then
+			success=1
+		else
+			(( i += 1 ))
+		fi
 	done
 	if [ $success -eq 1 ]
 	then
-	    echo -e "\t\tOK"
+		echo "\t\tOK"
 	else
-	    echo -e "\t\tERROR"
-	    echo -e "Could not download the panel! Maybe try again or ask us for support!\n"
-	    exit 1
+		echo "\t\tERROR"
+		echo "Could not download the panel! Maybe try again or ask us for support!\n"
+		exit 1
 	fi
 
-	echo -e "Unzipping...\c"
+	echo "Unzipping...\c"
 	if unzip -nqq $FILENAME > /dev/null
 	then
-	    chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
-	    chown -R www:www *
-	    rm $FILENAME
-	    rm app/tmp/inst.txt
-	    curl --silent $INSTURL -o macinstall.sh > /dev/null
-	    echo -e "\t\t\tOK"
-	    echo -e "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
-	    exit 0
+		chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
+		chown -R www:www *
+		rm $FILENAME
+		rm app/tmp/inst.txt
+		curl --silent $INSTURL -o macinstall.sh > /dev/null
+		echo "\t\t\tOK"
+		echo "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
+		exit 0
 	else
-	    echo -e "\t\t\tERROR"
-	    echo -e "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
-	    exit 1
+		echo "\t\t\tERROR"
+		echo "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
+		exit 1
 	fi
 fi
 
-echo -e "Downloading SpaceCP now...\c"
+dep4=0
+for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+do
+        [ $i -eq 1 ] && dep4=1 && break
+done
+if [ $dep4 -eq 1 ]
+then
+        inputline="Y"
+        echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
+        read inputline
+        if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+        then
+                echo "Enabling PHP-gd2...\c"
+                for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+                do
+                        sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
+                done
+                echo "\t\tOK"
+                dep4=1
+        else
+                echo "Not enabling PHP-gd2... (You will need to do it manually)\n"
+        fi
+fi
+
+echo "Downloading SpaceCP now...\c"
 i=0
 success=0
 while [ $i -lt 5 ] && [ $success -eq 0 ]
 do
-    if curl --silent "$URL$FILENAME" -o $FILENAME > /dev/null
-    then
-        success=1
-    else
-        (( i += 1 ))
-    fi
+	if curl --silent "$URL$FILENAME" -o $FILENAME > /dev/null
+	then
+		success=1
+	else
+		(( i += 1 ))
+	fi
 done
 if [ $success -eq 1 ]
 then
-    echo -e "\tOK"
+	echo "\tOK"
 else
-    echo -e "\tERROR"
-    echo -e "Could not download the panel! Maybe try again or ask us for support!\n"
-    exit 1
+	echo "\tERROR"
+	echo "Could not download the panel! Maybe try again or ask us for support!\n"
+	exit 1
 fi
 
-echo -e "Unzipping...\c"
+echo "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
-    chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
-    chown -R www:www *
-    rm $FILENAME
-    echo -e "\t\t\tOK"
-    echo -e "\nEverything has been unzipped, modded and owned correctly! You now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
-    exit 0
+	chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
+	chown -R www:www *
+	rm $FILENAME
+	echo "\t\t\tOK"
+	echo "\nEverything has been unzipped, modded and owned correctly! You now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
+	exit 0
 else
-    echo -e "\t\t\tERROR"
-    echo -e "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
-    exit 1
+	echo "\t\t\tERROR"
+	echo "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
+	exit 1
 fi
