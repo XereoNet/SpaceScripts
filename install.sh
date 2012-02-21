@@ -374,7 +374,7 @@ then
 	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 	then
 	        echo "Enabling PHP-gd2...\c"
-	        for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+	        for i in $(find /etc/ -name php.ini -exec grep ^\;extension=php_gd2 {} \;)
 	        do
 	                sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
 	        done
