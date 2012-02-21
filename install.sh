@@ -170,18 +170,18 @@ else
 	dep3=0
 fi
 
-echo "php-gd2...\c"
-dep4=0
-for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
-do
-	[ $i -eq 1 ] && dep4=1 && break
-done
-if [ $dep4 -eq 1 ]
-then
-	echo "\t\t\tOK"
-else
-	echo "\t\t\tERROR"
-fi
+#echo "php-gd2...\c"
+#dep4=0
+#for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+#do
+#	[ $i -eq 1 ] && dep4=1 && break
+#done
+#if [ $dep4 -eq 1 ]
+#then
+#	echo "\t\t\tOK"
+#else
+#	echo "\t\t\tERROR"
+#fi
 
 if [ $sqld -eq 3 ] || [ $sqld -eq 0 ]
 then
@@ -366,24 +366,24 @@ then
 	fi
 fi
 
-if [ $dep4 -eq 0 ]
-then
-	inputline="Y"
-	echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
-	read inputline
-	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
-	then
-	        echo "Enabling PHP-gd2...\c"
-	        for i in $(find /etc/ -name php.ini -exec grep ^\;extension=php_gd2 {} \;)
-	        do
-	                sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
-	        done
-	        echo "\t\tOK"
-	        dep4=1
-	else
-		echo "Not enabling PHP-gd2... \(You will need to do it manually\)\n"
-	fi
-fi
+#if [ $dep4 -eq 0 ]
+#then
+#	inputline="Y"
+#	echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
+#	read inputline
+#	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
+#	then
+#	        echo "Enabling PHP-gd2...\c"
+#	        for i in $(find /etc/ -name php.ini -exec grep ^\;extension=php_gd2 {} \;)
+#	        do
+#	                sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
+#	        done
+#	        echo "\t\tOK"
+#	        dep4=1
+#	else
+#		echo "Not enabling PHP-gd2... \(You will need to do it manually\)\n"
+#	fi
+#fi
 
 echo "\nDependencies are OK!\n"
 echo "Downloading SpaceCP now...\c"
@@ -429,7 +429,7 @@ then
 		[ $resw -eq 2 ] && /etc/init.d/nginx restart > /dev/null
 	fi
 	echo "\t\t\tOK"
-	echo "\nEverything has been unzipped, modded and owned correctly! You now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
+	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
 	exit 0
 else
 	echo "\t\t\tERROR"

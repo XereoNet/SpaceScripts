@@ -5,7 +5,7 @@ URL="http://dl.xereo.net/open/"
 # Filename derp
 FILENAME="1.1.00-full.zip"
 # URL to installation script
-INSTURL="http://dl.nope.bz/sb/macinstall.sh"
+INSTURL="http://dl.nope.bz/sb/mac_install.sh"
 # URL to the unzip binaries
 URLUZ="http://dl.xereo.net/zip/bin/unzip"
 
@@ -72,7 +72,7 @@ then
 		chown -R www:www *
 		rm $FILENAME
 		rm app/tmp/inst.txt
-		curl --silent $INSTURL -o macinstall.sh > /dev/null
+		curl --silent $INSTURL -o mac_install.sh > /dev/null
 		echo "\t\t\tOK"
 		echo "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
 		exit 0
@@ -83,29 +83,29 @@ then
 	fi
 fi
 
-dep4=0
-for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
-do
-        [ $i -eq 1 ] && dep4=1 && break
-done
-if [ $dep4 -eq 1 ]
-then
-        inputline="Y"
-        echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
-        read inputline
-        if [ "$inputline" = "Y" ]] || [ "$inputline" = "y" ]] || [ "$inputline" = "yes" ]] || [ "$inputline" = "YES" ]] || [ "$inputline" = "Yes" ]] || [ "$inputline" = "" ]]
-        then
-                echo "Enabling PHP-gd2...\c"
-                for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
-                do
-                        sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
-                done
-                echo "\t\tOK"
-                dep4=1
-        else
-                echo "Not enabling PHP-gd2... (You will need to do it manually)\n"
-        fi
-fi
+#dep4=0
+#for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+#do
+#        [ $i -eq 1 ] && dep4=1 && break
+#done
+#if [ $dep4 -eq 1 ]
+#then
+#        inputline="Y"
+#        echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
+#        read inputline
+#        if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
+#        then
+#                echo "Enabling PHP-gd2...\c"
+#                for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+#                do
+#                        sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
+#                done
+#                echo "\t\tOK"
+#                dep4=1
+#        else
+#                echo "Not enabling PHP-gd2... (You will need to do it manually)\n"
+#        fi
+#fi
 
 echo "Downloading SpaceCP now...\c"
 i=0
@@ -135,7 +135,7 @@ then
 	chown -R www:www *
 	rm $FILENAME
 	echo "\t\t\tOK"
-	echo "\nEverything has been unzipped, modded and owned correctly! You now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
+	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
 	exit 0
 else
 	echo "\t\t\tERROR"
