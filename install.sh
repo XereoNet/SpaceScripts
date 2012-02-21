@@ -13,10 +13,10 @@ if [ "$(id -u)" != "0" ]
 then
 	echo "This script must be run as root!" 1>&2
 	exit 1
-elif [ -z $BASH ]
-then
-	echo "You need to execute this script in bash!" 1>&2
-	exit 1
+#elif [ -z $BASH ]
+#then
+#	echo "You need to execute this script in bash!" 1>&2
+#	exit 1
 fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
@@ -178,9 +178,9 @@ do
 done
 if [ $dep4 -eq 1 ]
 then
-	echo "\t\tOK"
+	echo "\t\t\tOK"
 else
-	echo "\t\tERROR"
+	echo "\t\t\tERROR"
 fi
 
 if [ $sqld -eq 3 ] || [ $sqld -eq 0 ]
@@ -191,7 +191,7 @@ then
 		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by SpaceCP. Would you like to install MySQL now? [Y]/n \c"
 		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. SpaceCP will need one. Do you want to install MySQL Server now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing MySQL...\c"
 			if apt-get install -y mysql > /dev/null
@@ -210,7 +210,7 @@ then
 		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by SpaceCP. Would you like to install MySQL now? [Y]/n \c"
 		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. SpaceCP will need one. Do you want to install MySQL Server now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing MySQL...\c"
 			if yum install -y mysql-server > /dev/null
@@ -237,7 +237,7 @@ then
 	then
 		echo "You don't have any Webserver installed. SpaceCP will need one. Do you want to install the Apache2 webserver now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing Apache2..."
 			if apt-get install -y apache2 > /dev/null
@@ -256,7 +256,7 @@ then
 	then
 		echo "You don't have any Webserver installed. SpaceCP will need one. Do you want to install the httpd webserver now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing httpd...\c"
 			if yum install -y httpd > /dev/null
@@ -283,7 +283,7 @@ then
 	then
 		echo "You don't have PHP5 and Curl installed. SpaceCP will need them. Do you want to install PHP5 and Curl now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing PHP5 and Curl...\c"
 			if apt-get install -y php5 php5-curl
@@ -302,7 +302,7 @@ then
 	then
 		echo "You don't have PHP and Curl installed. SpaceCP will need them. Do you want to install PHP and Curl now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing PHP and Curl...\c"
 			if yum install -y php libcurl > /dev/null
@@ -329,7 +329,7 @@ then
 	then
 		echo "You don't have Curl installed. SpaceCP will need it. Do you want to install Curl now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing Curl...\c"
 			if apt-get install -y php5-curl > /dev/null
@@ -347,7 +347,7 @@ then
 	then
 		echo "You don't have Curl installed. SpaceCP will need it. Do you want to install Curl now? [Y]/n \c"
 		read inputline
-		if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
 			echo "Installing Curl...\c"
 			if yum install -y libcurl > /dev/null
@@ -369,9 +369,9 @@ fi
 if [ $dep4 -eq 0 ]
 then
 	inputline="Y"
-	echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
+	echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
 	read inputline
-	if [[ $inputline == "Y" ]] || [[ $inputline == "y" ]] || [[ $inputline == "yes" ]] || [[ $inputline == "YES" ]] || [[ $inputline == "Yes" ]] || [[ $inputline == "" ]]
+	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 	then
 	        echo "Enabling PHP-gd2...\c"
 	        for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
@@ -381,7 +381,7 @@ then
 	        echo "\t\tOK"
 	        dep4=1
 	else
-		echo "Not enabling PHP-gd2... (You will need to do it manually)\n"
+		echo "Not enabling PHP-gd2... \(You will need to do it manually\)\n"
 	fi
 fi
 
