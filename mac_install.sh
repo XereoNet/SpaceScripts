@@ -13,9 +13,16 @@ if [ "$(id -u)" != "0" ]
 then
 	echo "This script must be run as root!" 1>&2
 	exit 1
-elif [ -z $BASH ]
+#elif [ -z $BASH ]
+#then
+#	echo "You need to execute this script in bash!" 1>&2
+#	exit 1
+fi
+
+if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || pwd | grep '^/etc' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/boot' > /dev/null || pwd | grep '^/lib' > /dev/null || pwd | grep '^/root' > /dev/null || pwd | grep '^/sbin' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/selinux' > /dev/null || pwd | grep '^/srv' > /dev/null || pwd | grep '^/usr' > /dev/null || pwd | grep '^/mnt' > /dev/null || pwd | grep '^/mount' > /dev/null || pwd | grep '^/media' > /dev/null || pwd | grep '^/dev' > /dev/null || pwd | grep '^/opt' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/sys' > /dev/null || pwd | grep '^/lib64' > /dev/null || pwd | grep '^/proc' > /dev/null || pwd | grep '^/home$' > /dev/null || pwd | grep '^/var$' > /dev/null
 then
-	echo "You need to execute this script in bash!" 1>&2
+	echo "Anti bumblebee security system engaged."
+	echo "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
 	exit 1
 fi
 
