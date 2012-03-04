@@ -38,6 +38,13 @@ fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
 then
+	echo "Are you sure you want to upgrade SpaceCP in this directory? Everything (except your settings) in it will be deleted! Y/[N] \c"
+	read inputline
+	if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
+	then
+		echo "Exiting..."
+		exit 0
+	fi
 	echo "Deleting old files...\c"
 	for i in $(ls -A ./ | grep -v "app")
 	do
