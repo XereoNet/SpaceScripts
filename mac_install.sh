@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # URL to the Download Directory, NOT the file
-URL="http://dl.xereo.net/open/"
+URL="http://dl.nope.bz/sb/open/"
 # Filename derp
 FILENAME="1.1.00-full.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/mac_install.sh"
 # URL to the unzip binaries
-URLUZ="http://dl.xereo.net/zip/bin/unzip"
+URLUZ="http://dl.nope.bz/sb/.bin/unzip"
 
 if [ "$(id -u)" != "0" ]
 then
