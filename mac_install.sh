@@ -19,17 +19,17 @@ then
 #	exit 1
 fi
 
-if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/var' ] || [ "$(pwd)" = '/var' ] \
-	|| pwd | grep '^/etc' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/boot' > /dev/null \
-	|| pwd | grep '^/lib' > /dev/null || pwd | grep '^/root' > /dev/null || pwd | grep '^/sbin' > /dev/null \
-	|| pwd | grep '^/bin' > /dev/null || pwd | grep '^/selinux' > /dev/null || pwd | grep '^/srv' > /dev/null \
-	|| pwd | grep '^/usr' > /dev/null || pwd | grep '^/mnt' > /dev/null || pwd | grep '^/mount' > /dev/null \
-	|| pwd | grep '^/media' > /dev/null || pwd | grep '^/dev' > /dev/null || pwd | grep '^/bin' > /dev/null \
-	|| pwd | grep '^/sys' > /dev/null || pwd | grep '^/lib64' > /dev/null || pwd | grep '^/proc' > /dev/null \
-	|| pwd | grep '^/home/[^/]*$' > /dev/null || pwd | grep '^/home/[^/]*/Desktop' > /dev/null \ 
-	|| pwd | grep '^/home/[^/]*/Videos' > /dev/null || pwd | grep '^/home/[^/]*/Pictures' > /dev/null \ 
-	|| pwd | grep '^/home/[^/]*/Documents' > /dev/null || pwd | grep '^/home/[^/]*/Music' > /dev/null \
-	|| pwd | grep '^/home/[^/]*/Templates' > /dev/null || pwd | grep '^/home/[^/]*/Downloads' > /dev/null
+if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/opt' ] || pwd | grep '^/Applications' > /dev/null \
+	|| pwd | grep '^/Developer' > /dev/null || pwd | grep '^/Library' > /dev/null \
+	|| pwd | grep '^/Network' > /dev/null || pwd | grep '^/System' > /dev/null \
+	|| pwd | grep '^/Volumes' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/cores' > /dev/null \
+	|| pwd | grep '^/dev' > /dev/null || pwd | grep '^/efi' > /dev/null || pwd | grep '^/lost+found' > /dev/null \
+	|| pwd | grep '^/net' > /dev/null || pwd | grep '^/opt' > /dev/null || pwd | grep '^/private' > /dev/null \
+	|| pwd | grep '^/sbin' > /dev/null || pwd | grep '^/usr' > /dev/null || pwd | grep '^/home/[^/]*$' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Desktop' > /dev/null || pwd | grep '^/home/[^/]*/Videos' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Pictures' > /dev/null || pwd | grep '^/home/[^/]*/Documents' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Music' > /dev/null || pwd | grep '^/home/[^/]*/Templates' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Downloads' > /dev/null
 then
 	echo "Anti bumblebee security system engaged."
 	echo "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
