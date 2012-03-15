@@ -20,8 +20,8 @@ then
 fi
 
 if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/var' ] || [ "$(pwd)" = '/var' ] \
-	|| pwd | grep '^/etc' > /dev/null || pwd | grep '^/bin' > /dev/null || pwd | grep '^/boot' > /dev/null \
-	|| pwd | grep '^/lib' > /dev/null || pwd | grep '^/root' > /dev/null || pwd | grep '^/sbin' > /dev/null \
+	|| [ "$(pwd)" = '/root' ] || pwd | grep '^/bin' > /dev/null || pwd | grep '^/boot' > /dev/null \
+	|| pwd | grep '^/lib' > /dev/null || pwd | grep '^/etc' > /dev/null || pwd | grep '^/sbin' > /dev/null \
 	|| pwd | grep '^/bin' > /dev/null || pwd | grep '^/selinux' > /dev/null || pwd | grep '^/srv' > /dev/null \
 	|| pwd | grep '^/usr' > /dev/null || pwd | grep '^/mnt' > /dev/null || pwd | grep '^/mount' > /dev/null \
 	|| pwd | grep '^/media' > /dev/null || pwd | grep '^/dev' > /dev/null || pwd | grep '^/bin' > /dev/null \
