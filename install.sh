@@ -57,7 +57,7 @@ fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
 then
-	echo "Are you sure you want to upgrade SpaceCP in this directory? Everything (except your settings) in it will be deleted! Y/[N] \c"
+	echo "Are you SURE you want to upgrade Spacebukkit in this directory? Everything (except your settings) in it will be deleted! [y/N] \c"
 	read inputline
 	if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
 	then
@@ -87,7 +87,7 @@ then
 	cd ../../
 	echo "\t\tOK"
 
-	echo "Downloading SpaceCP...\c"
+	echo "Downloading Spacebukkit...\c"
 	i=0
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -122,7 +122,7 @@ then
 		rm app/tmp/inst.txt
 		wget -q $INSTURL > /dev/null
 		echo "\t\t\tOK"
-		echo "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
+		echo "\nEverything has been updated correctly! Enjoy Spacebukkit!\n"
 		exit 0
 	else
 		echo "\t\t\tERROR"
@@ -231,8 +231,8 @@ then
 	inputline="Y"
 	if [ -f /etc/debian_version ]
 	then
-		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by SpaceCP. Would you like to install MySQL now? [Y]/n \c"
-		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. SpaceCP will need one. Do you want to install MySQL Server now? [Y]/n \c"
+		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by Spacebukkit. Would you like to install MySQL now? [Y]/n \c"
+		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. Spacebukkit will need one. Do you want to install MySQL Server now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -250,8 +250,8 @@ then
 		fi
 	elif [ -f /etc/centos-release ]
 	then
-		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by SpaceCP. Would you like to install MySQL now? [Y]/n \c"
-		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. SpaceCP will need one. Do you want to install MySQL Server now? [Y]/n \c"
+		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by Spacebukkit. Would you like to install MySQL now? [Y]/n \c"
+		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. Spacebukkit will need one. Do you want to install MySQL Server now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -268,8 +268,8 @@ then
 			echo "Not installing MySQL...\n"
 		fi
 	else
-		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by SpaceCP. We recommend you install MySQL."
-		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. You will need to install one for SpaceCP. We recommend you install MySQL."
+		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by Spacebukkit. We recommend you install MySQL."
+		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. You will need to install one for Spacebukkit. We recommend you install MySQL."
 	fi
 fi
 
@@ -278,7 +278,7 @@ then
 	inputline="Y"
 	if [ -f /etc/debian_version ]
 	then
-		echo "You don't have any Webserver installed. SpaceCP will need one. Do you want to install the Apache2 webserver now? [Y]/n \c"
+		echo "You don't have any Webserver installed. Spacebukkit will need one. Do you want to install the Apache2 webserver now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -297,7 +297,7 @@ then
 		fi
 	elif [ -f /etc/centos-release ]
 	then
-		echo "You don't have any Webserver installed. SpaceCP will need one. Do you want to install the httpd webserver now? [Y]/n \c"
+		echo "You don't have any Webserver installed. Spacebukkit will need one. Do you want to install the httpd webserver now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -315,7 +315,7 @@ then
 			echo "Not installing httpd...\n"
 		fi
 	else
-		[ $sqld -eq 0 ] && echo "You don't have any Webserver installed. You will need to install one for SpaceCP. We recommend you install the Apache2 webserver."
+		[ $sqld -eq 0 ] && echo "You don't have any Webserver installed. You will need to install one for Spacebukkit. We recommend you install the Apache2 webserver."
 	fi
 fi
 
@@ -324,7 +324,7 @@ then
 	inputline="Y"
 	if [ -f /etc/debian_version ]
 	then
-		echo "You don't have PHP5 and Curl installed. SpaceCP will need them. Do you want to install PHP5 and Curl now? [Y]/n \c"
+		echo "You don't have PHP5 and Curl installed. Spacebukkit will need them. Do you want to install PHP5 and Curl now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -343,7 +343,7 @@ then
 		fi
 	elif [ -f /etc/centos-release ]
 	then
-		echo "You don't have PHP and Curl installed. SpaceCP will need them. Do you want to install PHP and Curl now? [Y]/n \c"
+		echo "You don't have PHP and Curl installed. Spacebukkit will need them. Do you want to install PHP and Curl now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -361,7 +361,7 @@ then
 			echo "Not installing PHP or Curl... (You will need to do it manually)\n"
 		fi
 	else
-		[ $sqld -eq 0 ] && echo "You don't have PHP and Curl installed. You will need them for SpaceCP."
+		[ $sqld -eq 0 ] && echo "You don't have PHP and Curl installed. You will need them for Spacebukkit."
 	fi
 fi
 
@@ -370,7 +370,7 @@ then
 	inputline="Y"
 	if [ -f /etc/debian_version ]
 	then
-		echo "You don't have Curl installed. SpaceCP will need it. Do you want to install Curl now? [Y]/n \c"
+		echo "You don't have Curl installed. Spacebukkit will need it. Do you want to install Curl now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -388,7 +388,7 @@ then
 		fi
 	elif [ -f /etc/centos-release ]
 	then
-		echo "You don't have Curl installed. SpaceCP will need it. Do you want to install Curl now? [Y]/n \c"
+		echo "You don't have Curl installed. Spacebukkit will need it. Do you want to install Curl now? [Y]/n \c"
 		read inputline
 		if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 		then
@@ -405,14 +405,14 @@ then
 			echo "Not installing Curl... (You will need to do it manually)\n"
 		fi
 	else
-		[ $sqld -eq 0 ] && echo "You don't have Curl installed. You will need it for SpaceCP."
+		[ $sqld -eq 0 ] && echo "You don't have Curl installed. You will need it for Spacebukkit."
 	fi
 fi
 
 #if [ $dep4 -eq 0 ]
 #then
 #	inputline="Y"
-#	echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
+#	echo "You don't have PHP-gd2 enabled. Spacebukkit will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
 #	read inputline
 #	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 #	then
@@ -430,7 +430,15 @@ fi
 
 echo "\nDependencies are OK!\n"
 
-echo "Downloading SpaceCP now...\c"
+echo "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
+read inputline
+if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
+then
+	echo "Exiting."
+	exit 0
+fi
+
+echo "Downloading Spacebukkit now...\c"
 i=0
 success=0
 while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -473,7 +481,7 @@ then
 		[ $resw -eq 2 ] && /etc/init.d/nginx restart > /dev/null
 	fi
 	echo "\t\t\tOK"
-	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
+	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"
 	exit 0
 else
 	echo "\t\t\tERROR"
