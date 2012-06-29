@@ -38,7 +38,7 @@ fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
 then
-	echo "Are you sure you want to upgrade SpaceCP in this directory? Everything (except your settings) in it will be deleted! Y/[N] \c"
+	echo "Are you SURE you want to upgrade Spacebukkit in this directory? Everything (except your settings) in it will be deleted! [Y/n] \c"
 	read inputline
 	if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
 	then
@@ -68,7 +68,7 @@ then
 	cd ../../
 	echo "\t\tOK"
 
-	echo "Downloading SpaceCP...\c"
+	echo "Downloading Spacebukkit...\c"
 	i=0
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -98,7 +98,7 @@ then
 		rm app/tmp/inst.txt
 		curl --silent $INSTURL -o mac_install.sh > /dev/null
 		echo "\t\t\tOK"
-		echo "\nEverything has been updated correctly! Enjoy SpaceCP!\n"
+		echo "\nEverything has been updated correctly! Enjoy Spacebukkit!\n"
 		exit 0
 	else
 		echo "\t\t\tERROR"
@@ -115,7 +115,7 @@ fi
 #if [ $dep4 -eq 1 ]
 #then
 #        inputline="Y"
-#        echo "You don't have PHP-gd2 enabled. SpaceCP will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
+#        echo "You don't have PHP-gd2 enabled. Spacebukkit will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
 #        read inputline
 #        if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
 #        then
@@ -131,7 +131,15 @@ fi
 #        fi
 #fi
 
-echo "Downloading SpaceCP now...\c"
+echo "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
+read inputline
+if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
+then
+	echo "Exiting."
+	exit 0
+fi
+
+echo "Downloading Spacebukkit now...\c"
 i=0
 success=0
 while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -159,7 +167,7 @@ then
 	chown -R www:www *
 	rm $FILENAME
 	echo "\t\t\tOK"
-	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome SpaceCP Panel! \o/ *!party!* \o/\n"
+	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"
 	exit 0
 else
 	echo "\t\t\tERROR"
