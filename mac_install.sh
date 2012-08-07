@@ -3,7 +3,7 @@
 # URL to the Download Directory, NOT the file
 URL="http://dl.xereo.net/open/"
 # Filename derp
-FILENAME="1.1.00-full.zip"
+FILENAME="1.2.rc-full.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/mac_install.sh"
 # URL to the unzip binaries
