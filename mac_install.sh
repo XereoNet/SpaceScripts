@@ -13,10 +13,6 @@ if [ "$(id -u)" != "0" ]
 then
 	echo "This script must be run as root!" 1>&2
 	exit 1
-#elif [ -z $BASH ]
-#then
-#	echo "You need to execute this script in bash!" 1>&2
-#	exit 1
 fi
 
 if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/opt' ] || pwd | grep '^/Applications' > /dev/null \
@@ -77,7 +73,7 @@ then
 		then
 			success=1
 		else
-			(( i += 1 ))
+			(( $i += 1 ))
 		fi
 	done
 	if [ $success -eq 1 ]
@@ -107,30 +103,6 @@ then
 	fi
 fi
 
-#dep4=0
-#for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
-#do
-#        [ $i -eq 1 ] && dep4=1 && break
-#done
-#if [ $dep4 -eq 1 ]
-#then
-#        inputline="Y"
-#        echo "You don't have PHP-gd2 enabled. Spacebukkit will need it. Do you want to enable PHP-gd2 now? [Y]/n \"
-#        read inputline
-#        if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
-#        then
-#                echo "Enabling PHP-gd2...\c"
-#                for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
-#                do
-#                        sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
-#                done
-#                echo "\t\tOK"
-#                dep4=1
-#        else
-#                echo "Not enabling PHP-gd2... (You will need to do it manually)\n"
-#        fi
-#fi
-
 echo "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
 read inputline
 if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
@@ -148,7 +120,7 @@ do
 	then
 		success=1
 	else
-		(( i += 1 ))
+		(( $i += 1 ))
 	fi
 done
 if [ $success -eq 1 ]
