@@ -1,16 +1,22 @@
 #!/bin/sh
 
 # URL to the Download Directory, NOT the file
-URL="http://jamy.be/dl/"
+URL="http://dl.xereo.net/open/"
 # Filename derp
-FILENAME="panel.zip"
+FILENAME="1.2.rc-full.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/install.sh"
+# URL to the unzip binaries
+#URLUZ="http://dl.nope.bz/sb/.bin/unzip"
 
 if [ "$(id -u)" != "0" ]
 then
 	echo "This script must be run as root!" 1>&2
 	exit 1
+#elif [ -z $BASH ]
+#then
+#	echo "You need to execute this script in bash!" 1>&2
+#	exit 1
 fi
 
 if [ "$(pwd)" = '/' ] \
@@ -90,7 +96,7 @@ then
 		then
 			success=1
 		else
-			(( $i += 1 ))
+			(( i += 1 ))
 		fi
 	done
 	if [ $success -eq 1 ]
@@ -207,6 +213,19 @@ else
 	dep3=0
 fi
 
+#echo "php-gd2...\c"
+#dep4=0
+#for i in $(find /etc/ -name php.ini -exec grep -c ^\;extension=php_gd2 {} \;)
+#do
+#	[ $i -eq 1 ] && dep4=1 && break
+#done
+#if [ $dep4 -eq 1 ]
+#then
+#	echo "\t\t\tOK"
+#else
+#	echo "\t\t\tERROR"
+#fi
+
 if [ $sqld -eq 2 ] || [ $sqld -eq 0 ]
 then
 	inputline="Y"
@@ -249,7 +268,7 @@ then
 			echo "Not installing MySQL...\n"
 		fi
 	else
-		[ $sqld -eq 3 ] && echo "You have SQLite installed. This is not optimal and is not directly supported by Spacebukkit. We recommend you install MySQL."
+		[ $sqld -eq 3 ] && echo "You have PpostgreSQL installed. This is not optimal and is not directly supported by Spacebukkit. We recommend you install MySQL."
 		[ $sqld -eq 0 ] && echo "You don't have any SQL Server installed. You will need to install one for Spacebukkit. We recommend you install MySQL."
 	fi
 fi
@@ -390,6 +409,25 @@ then
 	fi
 fi
 
+#if [ $dep4 -eq 0 ]
+#then
+#	inputline="Y"
+#	echo "You don't have PHP-gd2 enabled. Spacebukkit will need it. Do you want to enable PHP-gd2 now? [Y]/n \c"
+#	read inputline
+#	if [ "$inputline" = "Y" ] || [ "$inputline" = "y" ] || [ "$inputline" = "yes" ] || [ "$inputline" = "YES" ] || [ "$inputline" = "Yes" ] || [ "$inputline" = "" ]
+#	then
+#	        echo "Enabling PHP-gd2...\c"
+#	        for i in $(find /etc/ -name php.ini -exec grep ^\;extension=php_gd2 {} \;)
+#	        do
+#	                sed -i 's/\;extension=php_gd2/extension=php_gd2/' $i
+#	        done
+#	        echo "\t\tOK"
+#	        dep4=1
+#	else
+#		echo "Not enabling PHP-gd2... \(You will need to do it manually\)\n"
+#	fi
+#fi
+
 echo "\nDependencies are OK!\n"
 
 echo "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
@@ -409,7 +447,7 @@ do
 	then
 		success=1
 	else
-		(( $i += 1 ))
+		(( i += 1 ))
 	fi
 done
 if [ $success -eq 1 ]
@@ -424,7 +462,7 @@ fi
 echo "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
-	chmod -R 777 app/tmp app/webroot app/Config/database*
+	chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
 	if [ -f /etc/centos-release ]
 	then
 		chown -R apache:apache *
@@ -432,6 +470,7 @@ then
 		chown -R www-data:www-data *
 	fi
 	rm $FILENAME
+#	rm unzip
 	if [ -f /etc/debian_verion ]
 	then
 		[ $resw -eq 1 ] && /etc/init.d/apache2 restart > /dev/null

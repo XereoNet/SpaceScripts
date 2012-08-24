@@ -1,13 +1,11 @@
 #!/bin/bash
 
 # URL to the Download Directory, NOT the file
-URL="http://dl.xereo.net/open/"
+URL="http://jamy.be/dl/"
 # Filename derp
-FILENAME="1.2.rc-full.zip"
+FILENAME="panel.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/mac_install.sh"
-# URL to the unzip binaries
-URLUZ="http://dl.nope.bz/sb/.bin/unzip"
 
 if [ "$(id -u)" != "0" ]
 then
@@ -135,8 +133,8 @@ fi
 echo "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
-	chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
-	chown -R www:www *
+	chmod -R 777 app/tmp app/webroot app/Config/database*
+	chown -R www:www ./*
 	rm $FILENAME
 	echo "\t\t\tOK"
 	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"
