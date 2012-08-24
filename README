@@ -1,4 +1,18 @@
  ====================
+ ==== installrtk.sh ====
+ ====================
+
+ This script file is intended for all linux systems.
+ It interactively ask for ram information and sets everything up.
+
+ Invocation:
+
+ sh installrtk.sh
+   This installs RTK and SpaceModule after confirmation in the folder 
+   you have chosen.
+
+
+ ====================
  ==== install.sh ====
  ====================
 
