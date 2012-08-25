@@ -1,9 +1,0 @@
-NEW
-
-  - mac installation script
-  - some small fixes
-  - it's now a shell script and not a bash script
-
-WIP
-
-  - check and enable if not php-gd2
