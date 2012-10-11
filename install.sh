@@ -36,13 +36,13 @@ if [ "$(pwd)" = '/' ] \
         || pwd | grep '^/lib64' > /dev/null \
         || pwd | grep '^/proc' > /dev/null \
         || pwd | grep '^/home/[^/]*$' > /dev/null \
-        || pwd | grep '^/home/[^/]*/Desktop' > /dev/null \
+        || pwd | grep '^/home/[^/]*/Desktop$' > /dev/null \
         || pwd | grep '^/home/[^/]*/Videos' > /dev/null \
         || pwd | grep '^/home/[^/]*/Pictures' > /dev/null \
-        || pwd | grep '^/home/[^/]*/Documents' > /dev/null \
+        || pwd | grep '^/home/[^/]*/Documents$' > /dev/null \
         || pwd | grep '^/home/[^/]*/Music' > /dev/null \
         || pwd | grep '^/home/[^/]*/Templates' > /dev/null \
-        || pwd | grep '^/home/[^/]*/Downloads' > /dev/null
+        || pwd | grep '^/home/[^/]*/Downloads$' > /dev/null
 then
 	echo "Anti bumblebee security system engaged."
 	echo "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
