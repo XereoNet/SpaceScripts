@@ -20,10 +20,10 @@ if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/opt' ] || pwd 
 	|| pwd | grep '^/dev' > /dev/null || pwd | grep '^/efi' > /dev/null || pwd | grep '^/lost+found' > /dev/null \
 	|| pwd | grep '^/net' > /dev/null || pwd | grep '^/opt' > /dev/null || pwd | grep '^/private' > /dev/null \
 	|| pwd | grep '^/sbin' > /dev/null || pwd | grep '^/usr' > /dev/null || pwd | grep '^/home/[^/]*$' > /dev/null \
-	|| pwd | grep '^/home/[^/]*/Desktop' > /dev/null || pwd | grep '^/home/[^/]*/Videos' > /dev/null \
-	|| pwd | grep '^/home/[^/]*/Pictures' > /dev/null || pwd | grep '^/home/[^/]*/Documents' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Desktop$' > /dev/null || pwd | grep '^/home/[^/]*/Videos' > /dev/null \
+	|| pwd | grep '^/home/[^/]*/Pictures' > /dev/null || pwd | grep '^/home/[^/]*/Documents$' > /dev/null \
 	|| pwd | grep '^/home/[^/]*/Music' > /dev/null || pwd | grep '^/home/[^/]*/Templates' > /dev/null \
-	|| pwd | grep '^/home/[^/]*/Downloads' > /dev/null
+	|| pwd | grep '^/home/[^/]*/Downloads$' > /dev/null
 then
 	echo "Anti bumblebee security system engaged."
 	echo "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
