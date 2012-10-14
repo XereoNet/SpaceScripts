@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # URL to the Download Directory, NOT the file
-URL="http://jamy.be/dl/"
+URL="https://github.com/downloads/SpaceDev/SpaceBukkitPanel/"
 # Filename derp
-FILENAME="panel.zip"
+FILENAME="spacebukkit.1.2.00.zip"
 # URL to installation script
 INSTURL="http://dl.nope.bz/sb/install.sh"
 
