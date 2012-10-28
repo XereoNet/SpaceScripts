@@ -1,7 +1,7 @@
 #!/bin/sh
 RTKDL='http://drdanick.com/downloads/dl.php?id=remotetoolkit&ver=r10_a13.1'
 SBDL='http://dev.drdanick.com/jenkins/job/SpaceModule/79/artifact/target/spacemodule-1.2-SNAPSHOT.jar'
-REPLACEURL='http://jamy.be/dl/replace'
+REPLACEURL='https://github.com/SpaceDev/SpaceScripts/blob/master/bin/replace?raw=true'
 
 clear
 echo "###############################################"
