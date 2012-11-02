@@ -133,8 +133,10 @@ fi
 echo "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
-	chmod -R 777 app/tmp app/webroot app/Config/database*
-	chown -R www:www ./*
+	chmod -R 777 SpaceDev-SpaceBukkitPanel-*/app/tmp SpaceDev-SpaceBukkitPanel-*/app/webroot SpaceDev-SpaceBukkitPanel-*/app/Config/database*
+	chown -R www:www ./SpaceDev-SpaceBukkitPanel-*/*
+	cp -r SpaceDev-SpaceBukkitPanel-*/* ./
+	rm -r SpaceDev-SpaceBukkitPanel-*
 	rm $FILENAME
 	echo "\t\t\tOK"
 	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"

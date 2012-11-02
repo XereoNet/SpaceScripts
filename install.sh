@@ -424,14 +424,16 @@ fi
 echo "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
-	chmod -R 777 app/tmp app/webroot app/Config/database*
+	chmod -R 777 SpaceDev-SpaceBukkitPanel-*/app/tmp SpaceDev-SpaceBukkitPanel-*/app/webroot SpaceDev-SpaceBukkitPanel-*/app/Config/database*
 	if [ -f /etc/centos-release ]
 	then
-		chown -R apache:apache *
+		chown -R apache:apache SpaceDev-SpaceBukkitPanel-*/*
 	else
-		chown -R www-data:www-data *
+		chown -R www-data:www-data SpaceDev-SpaceBukkitPanel-*/*
 	fi
+	cp -r SpaceDev-SpaceBukkitPanel-*/* ./
 	rm $FILENAME
+	rm -r SpaceDev-SpaceBukkitPanel-*
 	if [ -f /etc/debian_verion ]
 	then
 		[ $resw -eq 1 ] && /etc/init.d/apache2 restart > /dev/null
