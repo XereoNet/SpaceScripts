@@ -432,6 +432,7 @@ then
 		chown -R www-data:www-data SpaceDev-SpaceBukkitPanel-*/*
 	fi
 	cp -r SpaceDev-SpaceBukkitPanel-*/* ./
+	cp SpaceDev-SpaceBukkitPanel-*/.htaccess ./
 	rm $FILENAME
 	rm -r SpaceDev-SpaceBukkitPanel-*
 	if [ -f /etc/debian_verion ]

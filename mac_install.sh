@@ -136,6 +136,7 @@ then
 	chmod -R 777 SpaceDev-SpaceBukkitPanel-*/app/tmp SpaceDev-SpaceBukkitPanel-*/app/webroot SpaceDev-SpaceBukkitPanel-*/app/Config/database*
 	chown -R www:www ./SpaceDev-SpaceBukkitPanel-*/*
 	cp -r SpaceDev-SpaceBukkitPanel-*/* ./
+	cp SpaceDev-SpaceBukkitPanel-*/.htaccess ./
 	rm -r SpaceDev-SpaceBukkitPanel-*
 	rm $FILENAME
 	echo "\t\t\tOK"
