@@ -1,5 +1,11 @@
 #!/bin/bash
 
+function ECHO
+{
+	print=$1
+	echo -e $print
+}
+
 # URL to the Download Directory, NOT the file
 URL="https://github.com/downloads/SpaceDev/SpaceBukkitPanel/"
 # Filename derp
@@ -9,7 +15,7 @@ INSTURL="http://dl.nope.bz/sb/mac_install.sh"
 
 if [ "$(id -u)" != "0" ]
 then
-	echo "This script must be run as root!" 1>&2
+	ECHO "This script must be run as root!" 1>&2
 	exit 1
 fi
 
@@ -25,21 +31,21 @@ if [ "$(pwd)" = '/' ] || [ "$(pwd)" = '/home' ] || [ "$(pwd)" = '/opt' ] || pwd 
 	|| pwd | grep '^/home/[^/]*/Music' > /dev/null || pwd | grep '^/home/[^/]*/Templates' > /dev/null \
 	|| pwd | grep '^/home/[^/]*/Downloads$' > /dev/null
 then
-	echo "Anti bumblebee security system engaged."
-	echo "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
+	ECHO "Anti bumblebee security system engaged."
+	ECHO "Please execute the script in another directory, you were about to delete important files, and we don't want that :("
 	exit 1
 fi
 
 if [ "$1" = "-u" ] || [ "$1" = "--update" ]
 then
-	echo "Are you SURE you want to upgrade Spacebukkit in this directory? Everything (except your settings) in it will be deleted! [Y/n] \c"
+	ECHO "Are you SURE you want to upgrade Spacebukkit in this directory? Everything (except your settings) in it will be deleted! [Y/n] \c"
 	read inputline
 	if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
 	then
-		echo "Exiting..."
+		ECHO "Exiting..."
 		exit 0
 	fi
-	echo "Deleting old files...\c"
+	ECHO "Deleting old files...\c"
 	for i in $(ls -A ./ | grep -v "app")
 	do
 		rm -r $i
@@ -60,9 +66,9 @@ then
 		rm -r $i
 	done
 	cd ../../
-	echo "\t\tOK"
+	ECHO "\t\tOK"
 
-	echo "Downloading Spacebukkit...\c"
+	ECHO "Downloading Spacebukkit...\c"
 	i=0
 	success=0
 	while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -76,14 +82,14 @@ then
 	done
 	if [ $success -eq 1 ]
 	then
-		echo "\t\tOK"
+		ECHO "\t\tOK"
 	else
-		echo "\t\tERROR"
-		echo "Could not download the panel! Maybe try again or ask us for support!\n"
+		ECHO "\t\tERROR"
+		ECHO "Could not download the panel! Maybe try again or ask us for support!\n"
 		exit 1
 	fi
 
-	echo "Unzipping...\c"
+	ECHO "Unzipping...\c"
 	if unzip -nqq $FILENAME > /dev/null
 	then
 		chmod -R 777 app/tmp app/webroot app/Config/database* app/configuration*
@@ -91,25 +97,25 @@ then
 		rm $FILENAME
 		rm app/tmp/inst.txt
 		curl --silent $INSTURL -o mac_install.sh > /dev/null
-		echo "\t\t\tOK"
-		echo "\nEverything has been updated correctly! Enjoy Spacebukkit!\n"
+		ECHO "\t\t\tOK"
+		ECHO "\nEverything has been updated correctly! Enjoy Spacebukkit!\n"
 		exit 0
 	else
-		echo "\t\t\tERROR"
-		echo "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
+		ECHO "\t\t\tERROR"
+		ECHO "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
 		exit 1
 	fi
 fi
 
-echo "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
+ECHO "Are you SURE the current directory you are in (`pwd`) is the directoy the script is in and also the directory where you want to install Spacebukkit? [y/N]"
 read inputline
 if [ "$inputline" = "N" ] || [ "$inputline" = "n" ] || [ "$inputline" = "no" ] || [ "$inputline" = "NO" ] || [ "$inputline" = "No" ] || [ "$inputline" = "nO" ] || [ "$inputline" = "" ]
 then
-	echo "Exiting."
+	ECHO "Exiting."
 	exit 0
 fi
 
-echo "Downloading Spacebukkit now...\c"
+ECHO "Downloading Spacebukkit now...\c"
 i=0
 success=0
 while [ $i -lt 5 ] && [ $success -eq 0 ]
@@ -123,14 +129,14 @@ do
 done
 if [ $success -eq 1 ]
 then
-	echo "\tOK"
+	ECHO "\tOK"
 else
-	echo "\tERROR"
-	echo "Could not download the panel! Maybe try again or ask us for support!\n"
+	ECHO "\tERROR"
+	ECHO "Could not download the panel! Maybe try again or ask us for support!\n"
 	exit 1
 fi
 
-echo "Unzipping...\c"
+ECHO "Unzipping...\c"
 if unzip -oqq $FILENAME > /dev/null
 then
 	chmod -R 777 SpaceDev-SpaceBukkitPanel-*/app/tmp SpaceDev-SpaceBukkitPanel-*/app/webroot SpaceDev-SpaceBukkitPanel-*/app/Config/database*
@@ -139,11 +145,11 @@ then
 	cp SpaceDev-SpaceBukkitPanel-*/.htaccess ./
 	rm -r SpaceDev-SpaceBukkitPanel-*
 	rm $FILENAME
-	echo "\t\t\tOK"
-	echo "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"
+	ECHO "\t\t\tOK"
+	ECHO "\nEverything has been unzipped, modded and owned correctly!\nYou now have a perfect copy of the awesome Spacebukkit Panel! \o/ *!party!* \o/\n"
 	exit 0
 else
-	echo "\t\t\tERROR"
-	echo "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
+	ECHO "\t\t\tERROR"
+	ECHO "Problems unzipping the panel! Something went wrong, maybe try again or ask us for support!\n"
 	exit 1
 fi
