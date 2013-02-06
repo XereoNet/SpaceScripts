@@ -1,7 +1,7 @@
 #!/bin/sh
 arch=$(arch)
 RTKDL='http://drdanick.com/downloads/dl.php?id=remotetoolkit&ver=latest'
-SBDL='http://dev.drdanick.com/jenkins/job/SpaceModule/lastSuccessfulBuild/artifact/target/spacemodule-1.2-SNAPSHOT.jar'
+SBDL='http://apricot.drdanick.com/jenkins/job/SpaceModule/81/artifact/target/spacemodule-1.2-SNAPSHOT.jar'
 REPLACEURL="https://github.com/SpaceDev/SpaceScripts/raw/master/bin/replace_$arch"
 
 clear
