@@ -72,7 +72,7 @@ rm -rf serverdir
 rm -rf UDP*
 password=$( < /dev/urandom tr -dc A-Za-z0-9 | head -c8)
 sed -i 's/USER=user/USER=admin/' rtoolkit.sh
-sed -i "s/PASS=pass/PASS=$password" rtoolkit.sh
+sed -i "s/PASS=pass/PASS=$password/" rtoolkit.sh
 rm rtoolkit.sh.tmp
 chmod +x rtoolkit.sh
 rm rtoolkit.bat
