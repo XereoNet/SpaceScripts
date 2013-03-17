@@ -71,8 +71,8 @@ mv serverdir/* ./
 rm -rf serverdir
 rm -rf UDP*
 password=$( < /dev/urandom tr -dc A-Za-z0-9 | head -c8)
-cat rtoolkit.sh | ./replace "USER=user" "USER=admin" > rtoolkit.sh.tmp
-cat rtoolkit.sh.tmp | ./replace "PASS=pass" "PASS=$password" > rtoolkit.sh
+sed -i 's/USER=user/USER=admin/' rtoolkit.sh
+sed -i "s/PASS=pass/PASS=$password" rtoolkit.sh
 rm rtoolkit.sh.tmp
 chmod +x rtoolkit.sh
 rm rtoolkit.bat
